@@ -5,12 +5,14 @@
 
         });
 
-        describe('Test cases for $digest', function () {
-            var scope;
+         var scope;
 
             beforeEach(function () {
                 scope = new Scope();
             });
+
+        describe('Test cases for $digest', function () {
+
             it('call the listner function of watch', function () {
                 var watchFn = function () {};
 
@@ -176,5 +178,63 @@
             });
         });
 
+        describe('test case for $eval()',function(){
+            it('executes the function when passed to $eval',function(){
+
+                scope.value = 100;
+
+                var result = scope.$eval(function(scope){
+                    return scope.value
+                });
+
+                expect(result).toBe(100);
+
+            });
+
+            it('passes the second argument to $eval() straight',function(){
+               scope.value = 100;
+
+
+                var result = scope.$eval(function(scope,arg){
+                    return (scope.value+arg);
+                },10);
+
+                expect(result).toBe(110);
+
+            });
+
+        });
+
+        describe('test case for $apply()',function(){
+            it('executes function passed in $apply and calls $digest()',function(){
+
+                scope.firstName = 'ABC';
+                scope.counter = 0;
+
+                var watchFn = function(scope){
+                    return scope.firstName;
+                };
+
+                var listenerFn = function(oldValue,newValue,scope){
+                    scope.counter++;
+                };
+
+
+                scope.$watch(watchFn,listenerFn);
+                scope.$digest();
+
+                expect(scope.counter).toBe(1);
+
+                scope.$apply(function(scope){
+                scope.firstName = 'xyz';
+                });
+
+
+                expect(scope.counter).toBe(2);
+
+
+
+            });
+        })
 
     })

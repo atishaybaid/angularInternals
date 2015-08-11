@@ -35,8 +35,6 @@ Scope.prototype.$digestOnce = function () {
             watch.listenerFn(oldValue, newValue, self);
             dirty = true;
             this.$lastDirtyWatch = watch;
-        } else if(this.$lastDirtyWatch === watch){
-            return false;
         }
 
 
@@ -62,4 +60,21 @@ Scope.prototype.$digest = function () {
 
 
     } while (dirty);
+}
+
+
+Scope.prototype.$eval = function(evalExp,arg){
+    var value = evalExp(this,arg);
+
+    return value;
+
+}
+
+
+Scope.prototype.$apply = function(expr){
+    try{
+    this.$eval(expr);
+    } finally {
+        this.$digest();
+    }
 }
