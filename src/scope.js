@@ -1,3 +1,5 @@
+
+
 function Scope() {
     this.$$watchers = [];
 };
@@ -7,6 +9,7 @@ var initialRtnValue = function () {};
 
 
 Scope.prototype.$watch = function (watchFn, listenerFn) {
+    var self = this;
     var watch = {
         watchFn: watchFn,
         listenerFn: listenerFn,
@@ -16,6 +19,14 @@ Scope.prototype.$watch = function (watchFn, listenerFn) {
 
     this.$$watchers.push(watch);
     this.$lastDirtyWatch = null;
+
+    return function(){
+            var indexOfWatch = self.$$watchers.indexOf(watch);
+            if(indexOfWatch>=0){
+                self.$$watchers.splice(indexOfWatch,1);
+            }
+        }
+
 
 
 };
