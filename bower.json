@@ -4,8 +4,8 @@
     "description":"A mini framework inspired by angularjs scope object",
     "main": "src/scope.js",
     "ignore": [
-        "tests"
-        "node_modules"
+        "tests",
+        "node_modules",
         "README.md"
     ],
     "authors":[
