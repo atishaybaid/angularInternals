@@ -4,10 +4,10 @@
  This framework covers *dirty-checking* which is also the cause of *data-binding*.
 
  The framewokr implements these four main areas of functionality:
- 1)**Scope inheritance**->creating scope hierarchies for sharing data and events
- 2)**Dirty checking**->checking for changes in data and calling the appropriate listeners.
- 3)**Evaluating functions**->Evaluating the functions with the current scope.
- 4)**Destroying watches**->Abilty to destroy active watches.
+ 1.**Scope inheritance**->creating scope hierarchies for sharing data and events
+1 2.**Dirty checking**->checking for changes in data and calling the appropriate listeners.
+ 3.**Evaluating functions**->Evaluating the functions with the current scope.
+ 4.**Destroying watches**->Abilty to destroy active watches.
 
 
 #### How is it build?
@@ -17,18 +17,17 @@
 #### How to install?
 `bower install scope.js`
 
-
- #### API Documentation
- 1)Scope()-> A constructor function for creating new scope objects.
+#### API Documentation
+ 1.Scope()-> A constructor function for creating new scope objects.
  eg `var scope = new Scope();`
 
- 2)$watch(watchFn,listenerFn)->Method for watching changes in a function,and calling the registered listener.
+ 2.$watch(watchFn,listenerFn)->Method for watching changes in a function,and calling the registered listener.
  eg
-` scope.firstName = 'abc';`
- `scope.counter = 0;`
-` var watchFn = function(scope){`
- `return scope.firstName;`
- `}`
+` scope.firstName = 'abc';
+ scope.counter = 0;
+ var watchFn = function(scope){
+ return scope.firstName;
+ }`
 `var listenerFn = function(oldValue,newValue,scope){`
 `return counter++;`
 `}`
